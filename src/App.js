@@ -1,13 +1,19 @@
 
+import {Routes, Route } from 'react-router-dom';
 import './App.css';
 import CreateUser from './components/CreateUser';
-import UserTable from './components/UserTable';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
-    <CreateUser/>
-    <UserTable/>
+    <Routes>
+      <Route path='/' element={<Home />}/>
+      <Route path='create' element={<CreateUser />}/>
+    </Routes>
+
+    {/* <CreateUser/>
+    <Home/> */}
     </div>
   );
 }
