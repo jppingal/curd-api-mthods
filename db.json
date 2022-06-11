@@ -1,0 +1,39 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "name": "Satheesh",
+            "email": "Sat@mail.com",
+            "contact":  "9900786555",
+            "adderss": "South street"
+        },
+        {
+            "id": 2,
+            "name": "John",
+            "email": "john@mail.com",
+            "contact":  "9900780055",
+            "adderss": "North street"
+        },
+        {
+            "id": 3,
+            "name": "Robert",
+            "email": "robert@mail.com",
+            "contact":  "9900786125",
+            "adderss": "East street"
+        },
+        {
+            "id": 4,
+            "name": "Mani",
+            "email": "mani@mail.com",
+            "contact":  "9900723555",
+            "adderss": "West street"
+        },
+        {
+            "id": 5,
+            "name": "Rohit",
+            "email": "rohit@mail.com",
+            "contact":  "7901786555",
+            "adderss": "Tilak nagar"
+        }
+    ]
+}
