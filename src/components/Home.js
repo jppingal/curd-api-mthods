@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, loadUsers } from "../redux/action";
+import { Link } from "react-router-dom";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -67,7 +68,23 @@ const Home = () => {
         <div>
             {!!users === " " ? <p> Please Start json server go to terminal and type 'npm run server'</p> : " "
             }
-
+            <Link to="add">
+                <button style={{
+                    display: 'flex',
+                    justifyContnt: 'flex-end',
+                    backgroundColor: 'blue',
+                    color: 'white',
+                    border: 'none',
+                    padding: 5,
+                    marginTop: "20px",
+                    borderRadius: '2.5px'
+                }}>
+                    Add New User
+                </button>
+            </Link>
+            {/* <Button variant="contained" color="primary">
+                Add user
+            </Button> */}
             <TableContainer component={Paper}>
                 <Table className={Styles.table} aria-label="customized table">
                     <TableHead>
@@ -101,15 +118,17 @@ const Home = () => {
                                         onClick={() => handleDeleteButton(elem.id)}>
                                         Delete
                                     </button>
-                                    <button style={{
-                                        backgroundColor: 'green',
-                                        color: 'white',
-                                        border: 'none',
-                                        padding: 5,
-                                        borderRadius: '2.5px'
-                                    }}>
-                                        Edit
-                                    </button>
+                                    <Link to={`/edit/:${elem.id}`}>
+                                        <button style={{
+                                            backgroundColor: 'green',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: 5,
+                                            borderRadius: '2.5px'
+                                        }}>Edit
+                                        </button>
+                                    </Link>
+
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
