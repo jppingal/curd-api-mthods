@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useSelector, useDispatch } from "react-redux";
-import { loadUsers } from "../redux/action";
+import { deleteUser, loadUsers } from "../redux/action";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -52,13 +52,22 @@ const Home = () => {
 
     let dispatch = useDispatch()
 
-    const {users}=  useSelector(state=> state.data)
+    const { users } = useSelector(state => state.data)
 
-    useEffect(()=>{ 
+    useEffect(() => {
         dispatch(loadUsers())
     }, [])
+
+    const handleDeleteButton = (id) => {
+        if (window.confirm("Are you sure wanted to delete the user ?")) {
+            dispatch(deleteUser(id))
+        }
+    }
     return (
         <div>
+            {!!users === " " ? <p> Please Start json server go to terminal and type 'npm run server'</p> : " "
+            }
+
             <TableContainer component={Paper}>
                 <Table className={Styles.table} aria-label="customized table">
                     <TableHead>
@@ -80,8 +89,27 @@ const Home = () => {
                                 <StyledTableCell align="center">{elem.contact}</StyledTableCell>
                                 <StyledTableCell align="center">{elem.adderss}</StyledTableCell>
                                 <StyledTableCell align="center">
-                                <button style={{marginRight: 10, backgroundColor: 'green', color: 'white', border: 'none', padding: 5}}>Update</button>
-                                <button style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: 5}}>Delete</button>
+                                    <button
+                                        style={{
+                                            marginRight: 10,
+                                            backgroundColor: 'red',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: 5,
+                                            borderRadius: '2.5px'
+                                        }}
+                                        onClick={() => handleDeleteButton(elem.id)}>
+                                        Delete
+                                    </button>
+                                    <button style={{
+                                        backgroundColor: 'green',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: 5,
+                                        borderRadius: '2.5px'
+                                    }}>
+                                        Edit
+                                    </button>
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}

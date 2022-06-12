@@ -1,22 +1,28 @@
+import { findAllByDisplayValue } from "@testing-library/react";
 import * as types from "./actionTypes";
 
 const initialState = {
-    users : [],
+    users: [],
     user: {},
-    loading : true
+    loading: true
 };
 
-const usersReducers = (state= initialState, action) =>{
+const usersReducers = (state = initialState, action) => {
     switch (action.type) {
-        case types.GET_USERS :
-        return{
-            ...state,
-            users: action.payload,
-            loading: false
-        }
-        default: 
-        return state;
-    }
+        case types.GET_USERS:
+            return {
+                ...state,
+                users: action.payload,
+                loading: false
+            };
+        case types.DELETE_USER:
+            return {
+                ...state,
+                loading: false
+            };
+        default:
+            return state;
+    };
 };
 
 export default usersReducers;

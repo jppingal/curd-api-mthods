@@ -1,7 +1,7 @@
 import React from "react";
 
-const CreateUser = () =>{
-    return(
+const CreateUser = () => {
+    return (
         <h1>CreateUser</h1>
     )
 }
