@@ -19,12 +19,13 @@ const getUserEdit = (user)=>({
 const userUpdated = ()=>({
     type: types.UPDATE_USER,
 
+
 })
 
 export const loadUsers = () => {
     return function (dispatch) {
-        // axios.get(`${process.env.REACT_APP_API_KEY}`)
-        axios.get('http://localhost:5000/user/')
+         axios.get(`${process.env.REACT_APP_API_KEY}`)
+        // axios.get('http://localhost:5000/user/')
             .then((res) => {
                 // console.log("res", res);
                 dispatch(getUsers(res.data))
@@ -36,7 +37,7 @@ export const loadUsers = () => {
 export const deleteUser = (id) => {
     return function (dispatch) {
         // axios.get(`${process.env.REACT_APP_API_KEY}`)
-        axios.delete(`http://localhost:5000/user/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_KEY}${id}`)
             .then((res) => {
                 // console.log("res", res);
                 dispatch(userDeleted())
@@ -48,7 +49,7 @@ export const deleteUser = (id) => {
 
 export const addUser = (user)=>{
     return function (dispatch) {
-        axios.post(`http://localhost:5000/user/`, user)
+        axios.post(`${process.env.REACT_APP_API_KEY}`, user)
         .then((res)=> {
             console.log("Add User in Action", res);
             dispatch(userAdded());
@@ -64,7 +65,7 @@ export const getEditableUser = (id) => {
     return function (dispatch) {
         console.log("get Edit id in action: ", id);
         // axios.get(`${process.env.REACT_APP_API_KEY}`)
-        axios.get(`http://localhost:5000/user/3`)
+        axios.get(`${process.env.REACT_APP_API_KEY}${id}`)
             .then((res) => {
                 console.log("res", res);
                 dispatch(getUserEdit(res.data))
@@ -76,13 +77,13 @@ export const getEditableUser = (id) => {
 export const updateUser = (user, id) => {
     
     return function (dispatch) {
-        console.log("get Update id in action: ");
+        console.log("get Update id in action:updateUser ", user);
         // axios.get(`${process.env.REACT_APP_API_KEY}`)
-        axios.put(`http://localhost:5000/user/3`, user)
+        axios.put(`${process.env.REACT_APP_API_KEY}${id}`, user)
             .then((res) => {
                 console.log("res", res);
                 dispatch(userUpdated())
-                dispatch(loadUsers())
+                // dispatch(loadUsers())
             })
             .catch((error) => console.log("Update User Error :", error))
     };

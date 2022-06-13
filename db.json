@@ -15,13 +15,6 @@
       "adderss": "North street"
     },
     {
-      "id": 3,
-      "name": "jjjjj",
-      "email": "kkkkk@gmail.com",
-      "contact": "9100000025",
-      "adderss": "jjjjjjj street"
-    },
-    {
       "id": 4,
       "name": "Mani",
       "email": "mani@gmail.com",
@@ -29,25 +22,18 @@
       "adderss": "West street"
     },
     {
-      "name": "jai prakash",
-      "email": "jai@gmail.com",
-      "contact": "7878766",
-      "adderss": "jaipur",
-      "id": 6
-    },
-    {
-      "name": "Jai Prakash ",
-      "email": "jp.pingal@gmail.com",
-      "contact": "76987878",
-      "adderss": "sikar",
-      "id": 9
-    },
-    {
       "name": " Prakash ",
       "email": "prakash.pingal@gmail.com",
       "contact": "76987878",
       "adderss": "sikar",
       "id": 10
+    },
+    {
+      "name": "manisha",
+      "email": "manisha@gmail.com",
+      "contact": "465454454",
+      "adderss": "kishanpura",
+      "id": 11
     }
   ]
 }

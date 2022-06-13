@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import {getEditableUser, updateUser } from '../redux/action';
+import { getEditableUser, updateUser } from '../redux/action';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
 
 const EditUser = () => {
     const classes = useStyles();
-    const {id} = useParams();
+    const { id } = useParams();
     console.log("get id to url", id)
 
-    const {user} = useSelector((state)=> state.data)
+    const { user } = useSelector((state) => state.data)
 
-   
+
 
     console.log("get single user datain edit", user)
 
@@ -41,24 +41,28 @@ const EditUser = () => {
     }
 
     const dispatch = useDispatch()
-    const handleUpdateUserSubmit=(e) =>{
+    const handleUpdateUserSubmit = (e) => {
         e.preventDefault();
-        if(!name || !email || !contact || !adderss){
+        if (!name || !email || !contact || !adderss) {
             setError('Please input all input field')
-        }else{
+        } else {
             dispatch(updateUser(addUpdatedUser));
             setError("")
             setSuccessfull(true)
-            
+          console.log("updateUser", addUpdatedUser)  
         }
     }
 
-    useEffect(()=>{
-        setAddUpdatedUser({...user})
+   //for this useEffect use for defaultValue in edit form
+    useEffect(() => {
+        setAddUpdatedUser({ ...user })
     }, [user])
-    useEffect(()=>{
+
+
+    useEffect(() => {
         dispatch(getEditableUser(id))
-    },[])
+    }, [])
+
     return (
         <div>
             <Link to="/">
@@ -74,8 +78,8 @@ const EditUser = () => {
                 </button>
             </Link>
             <h3>Edit User Here</h3>
-            {!! successfull=== true ?<h5 style={{color: "green"}}> Form Updated successfully please click on Go To Home</h5>: ""}
-            {error && <h5 style={{color: "red"}}>{error} </h5>}
+            {!!successfull === true ? <h5 style={{ color: "green" }}> Form Updated successfully please click on Go To Home</h5> : ""}
+            {error && <h5 style={{ color: "red" }}>{error} </h5>}
             <form
                 className={classes.root}
                 noValidate autoComplete="off"
@@ -107,7 +111,7 @@ const EditUser = () => {
                     name='contact'
                     onChange={handleInputChange}
                 />
-                <br/>
+                <br />
                 <TextField
                     id="standard-basic"
                     label="Adderss"
@@ -116,8 +120,8 @@ const EditUser = () => {
                     name='adderss'
                     onChange={handleInputChange}
                 />
-                <br/>
-                 <button style={{
+                <br />
+                <button style={{
                     backgroundColor: 'green',
                     width: 150,
                     color: 'white',
