@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEditableUser, updateUser } from '../redux/action';
 
@@ -12,20 +12,33 @@ const useStyles = makeStyles((theme) => ({
             width: '45ch',
         },
     },
+    gotohome: {
+        backgroundColor: 'blue',
+        color: 'white',
+        border: 'none',
+        padding: 5,
+        borderRadius: '2.5px',
+        marginTop: "20px"
+    },
+    submitBtn: {
+        backgroundColor: 'green',
+        width: 150,
+        color: 'white',
+        border: 'none',
+        padding: 10,
+        borderRadius: '2.5px'
+    }
 }));
 
 const EditUser = () => {
+    const navigate = useNavigate()
+
     const classes = useStyles();
     const { id } = useParams();
-    console.log("get id to url", id)
 
-    const { user } = useSelector((state) => state.data)
+    const { user } = useSelector((state) => state.data);
 
-
-
-    console.log("get single user datain edit", user)
-
-    const [successfull, setSuccessfull] = useState(false)
+    const [hide, setHide] = useState(true);
 
     const [addUpdatedUser, setAddUpdatedUser] = useState({
         name: "",
@@ -46,14 +59,14 @@ const EditUser = () => {
         if (!name || !email || !contact || !adderss) {
             setError('Please input all input field')
         } else {
-            dispatch(updateUser(addUpdatedUser));
+            dispatch(updateUser(addUpdatedUser, id));
             setError("")
-            setSuccessfull(true)
-          console.log("updateUser", addUpdatedUser)  
+            navigate("/")
         }
     }
 
-   //for this useEffect use for defaultValue in edit form
+    //for this useEffect use for defaultValue in edit form 
+    //when click on edit button in table
     useEffect(() => {
         setAddUpdatedUser({ ...user })
     }, [user])
@@ -66,20 +79,11 @@ const EditUser = () => {
     return (
         <div>
             <Link to="/">
-                <button style={{
-                    backgroundColor: 'blue',
-                    color: 'white',
-                    border: 'none',
-                    padding: 5,
-                    borderRadius: '2.5px',
-                    marginTop: "20px"
-                }}>
+                <button className={classes.gotohome}>
                     Go To Home
                 </button>
             </Link>
             <h3>Edit User Here</h3>
-            {!!successfull === true ? <h5 style={{ color: "green" }}> Form Updated successfully please click on Go To Home</h5> : ""}
-            {error && <h5 style={{ color: "red" }}>{error} </h5>}
             <form
                 className={classes.root}
                 noValidate autoComplete="off"
@@ -121,21 +125,20 @@ const EditUser = () => {
                     onChange={handleInputChange}
                 />
                 <br />
-                <button style={{
-                    backgroundColor: 'green',
-                    width: 150,
-                    color: 'white',
-                    border: 'none',
-                    padding: 10,
-                    borderRadius: '2.5px'
-                }}
+                <button className={classes.submitBtn}
+                    // style={{
+                    //     backgroundColor: 'green',
+                    //     width: 150,
+                    //     color: 'white',
+                    //     border: 'none',
+                    //     padding: 10,
+                    //     borderRadius: '2.5px'
+                    // }}
                     type="submit">
                     Submit
                 </button>
-
             </form>
         </div>
-
     )
 }
 export default EditUser;

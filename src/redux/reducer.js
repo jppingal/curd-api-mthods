@@ -1,4 +1,3 @@
-import { findAllByDisplayValue } from "@testing-library/react";
 import * as types from "./actionTypes";
 
 const initialState = {
@@ -15,6 +14,7 @@ const usersReducers = (state = initialState, action) => {
                 users: action.payload,
                 loading: false
             };
+
         case types.DELETE_USER:
         case types.ADD_USER:
         case types.UPDATE_USER:
@@ -22,6 +22,7 @@ const usersReducers = (state = initialState, action) => {
                 ...state,
                 loading: false
             };
+
         case types.GET_EDIT_USER:
             return {
                 ...state,
